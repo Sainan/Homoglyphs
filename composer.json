@@ -1,0 +1,12 @@
+{
+	"name": "sainan/homoglyphs",
+	"description": "Transform lookalikes into their Latin counterparts.",
+	"homepage": "https://github.com/Sainan/Homoglyphs",
+	"type": "library",
+	"license": "Unlicense",
+	"autoload": {
+		"files": [
+			"src/homoglyphs.php"
+		]
+	}
+}
