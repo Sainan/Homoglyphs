@@ -42,7 +42,7 @@ function transform_homoglyphs($str)
 	$str = str_replace(['ｂ'], 'b', $str);
 	$str = str_replace(['ｃ', 'с', 'ƈ', 'ċ'], 'c', $str);
 	$str = str_replace(['ｄ', 'ԁ', 'ɗ'], 'd', $str);
-	$str = str_replace(['ｅ', 'е', 'ẹ', 'ė', 'ė', 'é', 'è'], 'e', $str);
+	$str = str_replace(['ｅ', 'е', 'ẹ', 'ė', 'é', 'è'], 'e', $str);
 	$str = str_replace(['ｆ'], 'f', $str);
 	$str = str_replace(['ｇ', 'ġ'], 'g', $str);
 	$str = str_replace(['ｈ', 'һ'], 'h', $str);

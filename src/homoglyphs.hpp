@@ -182,7 +182,6 @@ namespace Sainan
 		case L'е':
 		case L'ẹ':
 		case L'ė':
-		case L'ė':
 		case L'é':
 		case L'è':
 			c = L'e';
