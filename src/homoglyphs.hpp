@@ -5,6 +5,8 @@ namespace Sainan
 		switch(c)
 		{
 		case L'‚':
+		case L'，':
+		case L'、':
 			c = L',';
 			break;
 
@@ -447,11 +449,6 @@ namespace Sainan
 
 		case L'＼':
 			c = L'\\';
-			break;
-
-		case L'，':
-		case L'、':
-			c = L',';
 			break;
 
 		case L'．':

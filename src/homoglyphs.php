@@ -1,7 +1,7 @@
 <?php
 function transform_homoglyphs($str)
 {
-	$str = str_replace(['‚'], ',', $str);
+	$str = str_replace(['‚', '，', '、'], ',', $str);
 	$str = str_replace(['０'], '0', $str);
 	$str = str_replace(['１'], '1', $str);
 	$str = str_replace(['２'], '2', $str);
@@ -99,7 +99,6 @@ function transform_homoglyphs($str)
 	$str = str_replace(['￦'], '₩', $str);
 	$str = str_replace(['￥'], '¥', $str);
 	$str = str_replace(['＼'], '\\', $str);
-	$str = str_replace(['，', '、'], ',', $str);
 	$str = str_replace(['．', '。'], '.', $str);
 	$str = str_replace(['＂', '”'], '"', $str);
 	$str = str_replace(['｀', '‘'], '`', $str);
