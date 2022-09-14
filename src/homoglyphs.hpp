@@ -59,6 +59,7 @@ namespace Sainan
 			break;
 
 		case L'Ｃ':
+		case L'С':
 			c = L'C';
 			break;
 
@@ -107,6 +108,7 @@ namespace Sainan
 			break;
 
 		case L'Ｏ':
+		case L'О':
 			c = L'O';
 			break;
 
@@ -127,6 +129,7 @@ namespace Sainan
 			break;
 
 		case L'Ｔ':
+		case L'Т':
 			c = L'T';
 			break;
 

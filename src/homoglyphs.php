@@ -14,7 +14,7 @@ function transform_homoglyphs($str)
 	$str = str_replace(['９'], '9', $str);
 	$str = str_replace(['Ａ'], 'A', $str);
 	$str = str_replace(['Ｂ'], 'B', $str);
-	$str = str_replace(['Ｃ'], 'C', $str);
+	$str = str_replace(['Ｃ', 'С'], 'C', $str);
 	$str = str_replace(['Ｄ'], 'D', $str);
 	$str = str_replace(['Ｅ'], 'E', $str);
 	$str = str_replace(['Ｆ'], 'F', $str);
@@ -26,12 +26,12 @@ function transform_homoglyphs($str)
 	$str = str_replace(['Ｌ'], 'L', $str);
 	$str = str_replace(['Ｍ'], 'M', $str);
 	$str = str_replace(['Ｎ'], 'N', $str);
-	$str = str_replace(['Ｏ'], 'O', $str);
+	$str = str_replace(['Ｏ', 'О'], 'O', $str);
 	$str = str_replace(['Ｐ'], 'P', $str);
 	$str = str_replace(['Ｑ'], 'Q', $str);
 	$str = str_replace(['Ｒ'], 'R', $str);
 	$str = str_replace(['Ｓ'], 'S', $str);
-	$str = str_replace(['Ｔ'], 'T', $str);
+	$str = str_replace(['Ｔ', 'Т'], 'T', $str);
 	$str = str_replace(['Ｕ'], 'U', $str);
 	$str = str_replace(['Ｖ'], 'V', $str);
 	$str = str_replace(['Ｗ'], 'W', $str);
