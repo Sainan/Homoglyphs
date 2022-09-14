@@ -1,4 +1,35 @@
 <?php
+$homoglyphs = [];
+
+// Parse data to populate $homoglyphs
+
+$latin = NULL;
+$arr = [];
+foreach(explode("\n", file_get_contents("data.txt")) as $line)
+{
+	$line = rtrim($line, "\r");
+	if($line === "")
+	{
+		if($latin !== NULL)
+		{
+			$homoglyphs[$latin] = $arr;
+
+			$latin = NULL;
+			$arr = [];
+		}
+	}
+	else if($latin === NULL)
+	{
+		$latin = $line;
+	}
+	else
+	{
+		array_push($arr, $line);
+	}
+}
+
+// Generate code based on $homoglyphs
+
 $cpp = <<<EOC
 namespace Sainan
 {
@@ -15,45 +46,26 @@ function transform_homoglyphs(\$str)
 
 EOC;
 
-$latin = NULL;
-$homoglyphs = [];
-foreach(explode("\n", file_get_contents("data.txt")) as $line)
+foreach ($homoglyphs as $latin => $arr)
 {
-	$line = rtrim($line, "\r");
-	if($line === "")
+	$latin_char = '\'';
+	if(in_array($latin, ['\'', '\\']))
 	{
-		if($latin !== NULL)
-		{
-			$latin_char = '\'';
-			if(in_array($latin, ['\'', '\\']))
-			{
-				$latin_char .= '\\';
-			}
-			$latin_char .= $latin;
-			$latin_char .= '\'';
-
-			foreach($homoglyphs as $homoglyph)
-			{
-				$cpp .= "\n\t\tcase L'{$homoglyph}':";
-			}
-			$cpp .= "\n\t\t\tc = L".$latin_char.";\n";
-			$cpp .= "\t\t\tbreak;\n";
-
-			$php .= "\t\$str = str_replace(['".join("', '", $homoglyphs)."'], {$latin_char}, \$str);\n";
-
-			$latin = NULL;
-			$homoglyphs = [];
-		}
+		$latin_char .= '\\';
 	}
-	else if($latin === NULL)
+	$latin_char .= $latin;
+	$latin_char .= '\'';
+
+	foreach($arr as $homoglyph)
 	{
-		$latin = $line;
+		$cpp .= "\n\t\tcase L'{$homoglyph}':";
 	}
-	else
-	{
-		array_push($homoglyphs, $line);
-	}
+	$cpp .= "\n\t\t\tc = L".$latin_char.";\n";
+	$cpp .= "\t\t\tbreak;\n";
+
+	$php .= "\t\$str = str_replace(['".join("', '", $arr)."'], {$latin_char}, \$str);\n";
 }
+
 $cpp .= "\t\t}\n\t}\n}\n";
 $php .= "\treturn \$str;\n}\n";
 
