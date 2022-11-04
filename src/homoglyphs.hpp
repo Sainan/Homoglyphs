@@ -100,6 +100,7 @@ namespace Sainan
 			break;
 
 		case L'Ｍ':
+		case L'м':
 			c = L'M';
 			break;
 

@@ -24,7 +24,7 @@ function transform_homoglyphs($str)
 	$str = str_replace(['Ｊ'], 'J', $str);
 	$str = str_replace(['Ｋ'], 'K', $str);
 	$str = str_replace(['Ｌ'], 'L', $str);
-	$str = str_replace(['Ｍ'], 'M', $str);
+	$str = str_replace(['Ｍ', 'м'], 'M', $str);
 	$str = str_replace(['Ｎ'], 'N', $str);
 	$str = str_replace(['Ｏ', 'О'], 'O', $str);
 	$str = str_replace(['Ｐ'], 'P', $str);
