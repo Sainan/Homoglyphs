@@ -114,6 +114,7 @@ namespace Sainan
 			break;
 
 		case L'Ｐ':
+		case L'Р':
 			c = L'P';
 			break;
 
