@@ -332,10 +332,6 @@ namespace Sainan
 			c = L'?';
 			break;
 
-		case L'’':
-			c = L'´';
-			break;
-
 		case L'＾':
 			c = L'^';
 			break;
@@ -483,6 +479,8 @@ namespace Sainan
 
 		case L'′':
 		case L'＇':
+		case L'´':
+		case L'’':
 			c = L'\'';
 			break;
 		}

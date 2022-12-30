@@ -68,7 +68,6 @@ function transform_homoglyphs($str)
 	$str = str_replace(['；'], ';', $str);
 	$str = str_replace(['！'], '!', $str);
 	$str = str_replace(['？'], '?', $str);
-	$str = str_replace(['’'], '´', $str);
 	$str = str_replace(['＾'], '^', $str);
 	$str = str_replace(['～'], '~', $str);
 	$str = str_replace(['￣'], '¯', $str);
@@ -104,6 +103,6 @@ function transform_homoglyphs($str)
 	$str = str_replace(['｀', '‘'], '`', $str);
 	$str = str_replace(['＜', '《'], '<', $str);
 	$str = str_replace(['＞', '》'], '>', $str);
-	$str = str_replace(['′', '＇'], '\'', $str);
+	$str = str_replace(['′', '＇', '´', '’'], '\'', $str);
 	return $str;
 }
