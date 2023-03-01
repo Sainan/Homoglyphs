@@ -1,4 +1,4 @@
-# Homoglpyhs
+# Homoglyphs
 
 Transform lookalikes into their Latin counterparts.
 
