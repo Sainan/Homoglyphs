@@ -28,9 +28,9 @@ foreach(explode("\n", file_get_contents("data.txt")) as $line)
 	}
 }
 
-// Generate code based on $homoglyphs
+// Generate C++ code
 
-$cpp = <<<EOC
+$code = <<<EOC
 namespace Sainan
 {
 	inline void transform_homoglyph(wchar_t& c)
@@ -39,7 +39,31 @@ namespace Sainan
 		{
 EOC;
 
-$php = <<<EOC
+foreach ($homoglyphs as $latin => $arr)
+{
+	$latin_char = '\'';
+	if(in_array($latin, ['\'', '\\']))
+	{
+		$latin_char .= '\\';
+	}
+	$latin_char .= $latin;
+	$latin_char .= '\'';
+
+	foreach ($arr as $homoglyph)
+	{
+		$code .= "\n\t\tcase L'{$homoglyph}':";
+	}
+	$code .= "\n\t\t\tc = L".$latin_char.";\n";
+	$code .= "\t\t\tbreak;\n";
+}
+
+$code .= "\t\t}\n\t}\n}\n";
+
+file_put_contents("src/homoglyphs.hpp", $code);
+
+// Generate PHP code
+
+$code = <<<EOC
 <?php
 function transform_homoglyphs(\$str)
 {
@@ -56,18 +80,9 @@ foreach ($homoglyphs as $latin => $arr)
 	$latin_char .= $latin;
 	$latin_char .= '\'';
 
-	foreach($arr as $homoglyph)
-	{
-		$cpp .= "\n\t\tcase L'{$homoglyph}':";
-	}
-	$cpp .= "\n\t\t\tc = L".$latin_char.";\n";
-	$cpp .= "\t\t\tbreak;\n";
-
-	$php .= "\t\$str = str_replace(['".join("', '", $arr)."'], {$latin_char}, \$str);\n";
+	$code .= "\t\$str = str_replace(['".join("', '", $arr)."'], {$latin_char}, \$str);\n";
 }
 
-$cpp .= "\t\t}\n\t}\n}\n";
-$php .= "\treturn \$str;\n}\n";
+$code .= "\treturn \$str;\n}\n";
 
-file_put_contents("src/homoglyphs.hpp", $cpp);
-file_put_contents("src/homoglyphs.php", $php);
+file_put_contents("src/homoglyphs.php", $code);
