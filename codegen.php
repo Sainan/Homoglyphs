@@ -61,6 +61,30 @@ $code .= "\t\t}\n\t}\n}\n";
 
 file_put_contents("src/homoglyphs.hpp", $code);
 
+// Generate Lua code
+
+$code = "function transform_homoglyphs(str)\n";
+
+foreach ($homoglyphs as $latin => $arr)
+{
+	$latin_char = '\'';
+	if(in_array($latin, ['\'', '\\']))
+	{
+		$latin_char .= '\\';
+	}
+	$latin_char .= $latin;
+	$latin_char .= '\'';
+
+	foreach ($arr as $homoglyph)
+	{
+		$code .= "\tstr = str:gsub(\"".$homoglyph."\", {$latin_char})\n";
+	}
+}
+
+$code .= "\treturn str\nend\n";
+
+file_put_contents("src/homoglyphs.lua", $code);
+
 // Generate PHP code
 
 $code = <<<EOC
